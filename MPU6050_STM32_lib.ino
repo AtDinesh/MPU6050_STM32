@@ -92,6 +92,7 @@ int i;
 int16_t AcX,AcY,AcZ,GyX,GyY,GyZ;
 unsigned char buffC[14]={0};
 int next_time=0;
+int dt = 1000;
 
 // orientation/motion vars
 Quaternion q;           // [w, x, y, z]         quaternion container
@@ -153,7 +154,10 @@ void setup() {
     ///while (Serial.available() && Serial.read()); // empty buffer again
 
     
-    //for(i=0;i<5;i++) {digitalWrite(LED_PIN, HIGH);delay(10);digitalWrite(LED_PIN, LOW);delay(300);}
+    for(i=0;i<5;i++) {digitalWrite(LED_PIN, HIGH);delay(10);digitalWrite(LED_PIN, LOW);delay(300);}
+
+    // Set Accel Full Scale to 4g
+    mpu.setFullScaleAccelRange(MPU6050_ACCEL_FS_4);
 }
 
 
@@ -228,6 +232,7 @@ void loop() {
     // blink LED to indicate activity
     digitalWrite(LED_PIN, (millis()%1000)<10);
     while(micros()<next_time) delayMicroseconds(1); //1khz
+    next_time +=dt;
     blinkState = !blinkState;
     digitalWrite(PULSE_PIN, blinkState);
   }
