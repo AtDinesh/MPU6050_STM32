@@ -47,7 +47,7 @@ THE SOFTWARE.
 #ifndef _I2CDEV_H_
 #define _I2CDEV_H_
 
-#include <HardWire.h>
+//#include <HardWire.h>//Old version of rogerclarkmelbourne core
 
 // -----------------------------------------------------------------------------
 // I2C interface implementation setting

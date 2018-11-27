@@ -39,7 +39,7 @@ THE SOFTWARE.
 ===============================================
 */
 
-#include <HardWire.h>
+//#include <HardWire.h>//Old version of rogerclarkmelbourne core
 // Arduino HWire library is required if I2Cdev I2CDEV_ARDUINO_HWire implementation
 // is used in I2Cdev.h
 #include "Wire.h"
@@ -75,7 +75,7 @@ MPU6050 mpu;
    http://code.google.com/p/arduino/issues/detail?id=958
  * ========================================================================= */
 
-HardWire HWire(1, I2C_FAST_MODE); // I2c1 I2C_FAST_MODE
+TwoWire HWire(1, I2C_FAST_MODE); // I2c1 I2C_FAST_MODE
 
 #define LED_PIN 33 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
 #define PULSE_PIN 17
@@ -125,7 +125,7 @@ void setup() {
     pinMode(PULSE_PIN, OUTPUT);
     
     // join I2C bus (I2Cdev library doesn't do this automatically)
-    HWire.begin();
+    Wire.begin();
 
     // initialize serial communication
     // (115200 chosen because it is required for Teapot Demo output, but it's
