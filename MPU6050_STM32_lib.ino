@@ -158,25 +158,21 @@ void setup() {
     for(i=0;i<5;i++) {digitalWrite(LED_PIN, HIGH);delay(10);digitalWrite(LED_PIN, LOW);delay(300);}
 
     // Set Accel Full Scale to 4g
-    mpu.setFullScaleAccelRange(MPU6050_ACCEL_FS_4);
+    mpu.setFullScaleAccelRange(MPU6050_ACCEL_FS_8);
+    delay(1000); //wait for 1s
     // Set Gyroscope full scale to 500 deg/sec
     mpu.setFullScaleGyroRange(MPU6050_GYRO_FS_500);
+    delay(1000);
     // Set bandwith to 256 Hz //switch to MPU6050_DLPF_BW_42 for previous configuration
     mpu.setDLPFMode(MPU6050_DLPF_BW_256);
+    delay(1000);
 
-    //mpu.setXAccelOffset(-3625);
-    //mpu.setYAccelOffset(-1767);
-    //mpu.setZAccelOffset(895);
-    //mpu.setXGyroOffset(-13);
-    //mpu.setYGyroOffset(-31);
-    //mpu.setZGyroOffset(11);
-    
-    mpu.setXAccelOffset(-114);
-    mpu.setYAccelOffset(-166);
-    mpu.setZAccelOffset(1259);
-    mpu.setXGyroOffset(138);
-    mpu.setYGyroOffset(-29);
-    mpu.setZGyroOffset(97);
+    mpu.setXAccelOffset(2767);
+    mpu.setYAccelOffset(-541);
+    mpu.setZAccelOffset(1201);
+    mpu.setXGyroOffset(90);
+    mpu.setYGyroOffset(-20);
+    mpu.setZGyroOffset(7);
 
 }
 
