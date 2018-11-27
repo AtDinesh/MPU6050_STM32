@@ -28,10 +28,12 @@ int main(int argc, char *argv[])
 {
 	if( argc == 5 ) {
       printf("The arguments supplied are %s, %s, %s and %s\n", argv[1], argv[2], argv[3], argv[4]);
-			if((double)argv[1] != 2 && (double)argv[1] != 4 && (double)argv[1] != 8)
+			if((double)*argv[1] != 2 && (double)*argv[1] != 4 && (double)*argv[1] != 8)
 					printf("First expected argument should be either 2, 4 or 8.\n");
-			if((double)argv[2] != 250 && (double)argv[2] != 500)
+
+			if((double)*argv[2] != 250 && (double)*argv[2] != 500)
 					printf("Second expected argument should be either 250 or 500.\n");
+
 			// check that first characters of argv[4] are "/dev/ with strcmp"
    }
    else if( argc > 5 ) {
@@ -43,10 +45,9 @@ int main(int argc, char *argv[])
 			return 1;
    }
 
-	const double Acc_scale  = (double)argv[1];
-	const double Gyro_scale = (double)argv[2];
-	const int time_stop     = (int)argv[3];
-  
+	const double Acc_scale  = (double)*argv[1];
+	const double Gyro_scale = (double)*argv[2];
+	const int time_stop     = (int)*argv[3];
 
   bool save_file = true;
   struct timeval tv, t_loop;
@@ -69,11 +70,15 @@ int main(int argc, char *argv[])
   struct termios toptions;
 
   /* open serial port */
-  printf("open port...\n");
-  fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY);
+  printf("open port %s ...\n", argv[4]);
+  //fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY);
+  fd = open(argv[4], O_RDWR | O_NOCTTY);
   if (fd != -1)
-	printf("open ok\n");
-  else printf("open() unsuccessful\n");
+		printf("open ok\n");
+  else{
+		printf("open() unsuccessful. Exiting the program.\n");
+		return 1;
+	}
 
 
   tcgetattr(fd, &toptions);
