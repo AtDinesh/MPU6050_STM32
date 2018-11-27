@@ -1,6 +1,6 @@
-# MPU6050raw
+# MPU6050_STM32
 ===============
-program to get data from an MPU6050 using an STM32 microcontroller
+program to get raw data from an MPU6050 using an STM32 microcontroller
 
 ## Notes: 
 ### Requirements
@@ -22,7 +22,7 @@ the STM32 has a 'real' USB compared to most of Arduino boards. In our applicatio
 ## How to use:
 ### Objectives:
 Allows to receive raw data from a MPU6050 at 1 Khz using a STM32.
-The MPU is set to work at full scale 4g (accelerometer) and 250 degree/sec (gyroscope)
+The MPU is set to work at full scale 8g (accelerometer) and 500 degree/sec (gyroscope)
 you can either receive data in ASCII (to plot using arduino 1.6.11) or receive data on USB ports.
 Once received on USB, the log program will convert data into m/sec^2 for accelerometer and rad/sec for gyroscope. These conversions are done using constant variables with double precision.
 
@@ -30,7 +30,7 @@ Once received on USB, the log program will convert data into m/sec^2 for acceler
 
 For log programs :
  - Open Terminal and go in the log folder
- - run 'gcc -o <wished_program_name> log_IMU_4g.c'
+ - run 'gcc -o <wished_program_name> log_IMU_8g.c'
 Replace <wished_program_name> with the name that you want for the output program.
 
 ### Running:
