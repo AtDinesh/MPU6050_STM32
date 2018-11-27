@@ -27,12 +27,20 @@ typedef int bool;
 int main(int argc, char *argv[])
 {
 	if( argc == 5 ) {
-      printf("The arguments supplied are %s, %s, %s and %s\n", argv[1], argv[2], argv[3], argv[4]);
-			if((double)*argv[1] != 2 && (double)*argv[1] != 4 && (double)*argv[1] != 8)
-					printf("First expected argument should be either 2, 4 or 8.\n");
+			double acc_scale  = atof(argv[1]);
+			double gyro_scale = atof(argv[2]);
+			int time_stop     = atol(argv[3]);
 
-			if((double)*argv[2] != 250 && (double)*argv[2] != 500)
-					printf("Second expected argument should be either 250 or 500.\n");
+      printf("The arguments supplied are %f, %f, %d and %s\n", acc_scale, gyro_scale, time_stop, argv[4]);
+			if(acc_scale != 2.0 && acc_scale != 4.0 && acc_scale != 8.0){
+					printf("First expected argument should be either 2, 4 or 8. Instead is it now %f.\n", acc_scale);
+					return 1;
+			}
+
+			if(gyro_scale != 250.0 && gyro_scale != 500.0){
+					printf("Second expected argument should be either 250 or 500. Instead is it now %f.\n", gyro_scale);
+					return 1;
+			}
 
 			// check that first characters of argv[4] are "/dev/ with strcmp"
    }
@@ -45,9 +53,9 @@ int main(int argc, char *argv[])
 			return 1;
    }
 
-	const double Acc_scale  = (double)*argv[1];
-	const double Gyro_scale = (double)*argv[2];
-	const int time_stop     = (int)*argv[3];
+	const double Acc_scale  = atof(argv[1]);
+	const double Gyro_scale = atof(argv[2]);
+	const int time_stop     = atol(argv[3]);
 
   bool save_file = true;
   struct timeval tv, t_loop;
